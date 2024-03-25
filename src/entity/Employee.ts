@@ -7,28 +7,28 @@ import {
 } from "typeorm"
 
 @Entity()
-export class Employee {
+export default class Employee {
 
     @PrimaryGeneratedColumn()
-    id: number
+    id: number;
 
     @Column()
-    firstName: string
+    firstName: string;
 
     @Column()
-    lastName: string
+    lastName: string;
 
     @Column()
     department: string;
     
     @Column()
-    hireDate: Date
+    hireDate: Date;
     
     @Column()
-    phone: number
+    phone: number;
     
     @Column()
-    address: string
+    address: string;
 
     @CreateDateColumn()
     createdAt: Date;
