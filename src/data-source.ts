@@ -3,8 +3,6 @@ import { DataSource } from "typeorm";
 import * as dotenv from "dotenv";
 import Employee from './entity/Employee';
 
-// entities: ["./entity/*.ts"],
-
 dotenv.config();
 
 export const AppDataSource = new DataSource ({
