@@ -1,8 +1,8 @@
 export interface EmployeeType {
-    id: number;
-    firstName: string;
-    lastName: string;
-    department: string;
-    hireDate: string;
-  }
-  
+  id: string;
+  firstName: string;
+  lastName: string;
+  department: string;
+  hireDate: string;
+  phone: string;
+}

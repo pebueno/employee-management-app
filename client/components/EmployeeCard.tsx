@@ -36,7 +36,7 @@ const EmployeeCard: FC<Props> = ({ employee, onDelete }) => {
       }}
     >
       <Grid container direction="row" justifyContent="center">
-        <Grid xs={2}>
+        <Grid item xs={2}>
           <CardMedia
             component="img"
             sx={{ width: 151 }}
@@ -44,7 +44,7 @@ const EmployeeCard: FC<Props> = ({ employee, onDelete }) => {
             alt="Employee Avatar"
           />
         </Grid>
-        <Grid xs={7}>
+        <Grid item xs={7}>
           <CardContent sx={{ flex: '1 0 auto' }}>
             <Typography component="div" variant="h5" display="inline">
               {`${employee.firstName} ${employee.lastName}`}
@@ -59,7 +59,7 @@ const EmployeeCard: FC<Props> = ({ employee, onDelete }) => {
             </Typography>
           </CardContent>
         </Grid>
-        <Grid xs={3} sx={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
+        <Grid item xs={3} sx={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
           <Button variant="contained" color="primary" sx={{ backgroundColor: "#89CC48" }} onClick={() => console.log('View Details')}>
             View Details
           </Button>
