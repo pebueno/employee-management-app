@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import EmployeeCard from '../components/EmployeeCard';
 import { EmployeeType } from '../components/common/types';
+import { Container } from '@mui/material';
 
 const API_BASE_URL = 'http://localhost:3001/api';
 
@@ -35,25 +36,26 @@ const Home = () => {
     };
 
     return (
-        <div>
-            <h1>List of Employees</h1>
-            {/* Add New Employee button */}
-            {loading ? (
-                <p>Loading...</p>
-            ) : error ? (
-                <p>{error}</p>
-            ) : (
-                <div>
-                    {employees.map((employee) => (
-                        <EmployeeCard
-                            key={employee.id}
-                            employee={employee}
-                            onDelete={() => handleDeleteEmployee(employee.id)}
-                        />
-                    ))}
-                </div>
-            )}
-        </div>
+        <Container>
+            <div className="content">
+                <h1>List of Employees</h1>
+                {loading ? (
+                    <p>Loading...</p>
+                ) : error ? (
+                    <p>{error}</p>
+                ) : (
+                    <div className="cardContainer">
+                        {employees.map((employee) => (
+                            <EmployeeCard
+                                key={employee.id}
+                                employee={employee}
+                                onDelete={() => handleDeleteEmployee(employee.id)}
+                            />
+                        ))}
+                    </div>
+                )}
+            </div>
+        </Container>
     );
 };
 
