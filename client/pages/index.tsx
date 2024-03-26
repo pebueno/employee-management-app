@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import EmployeeCard from '../components/EmployeeCard';
 import { EmployeeType } from '../components/common/types';
-import { Container } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 const API_BASE_URL = 'http://localhost:3001/api';
 
@@ -37,24 +38,32 @@ const Home = () => {
 
     return (
         <Container>
-            <div className="content">
-                <h1>List of Employees</h1>
-                {loading ? (
-                    <p>Loading...</p>
-                ) : error ? (
-                    <p>{error}</p>
-                ) : (
-                    <div className="cardContainer">
-                        {employees.map((employee) => (
-                            <EmployeeCard
-                                key={employee.id}
-                                employee={employee}
-                                onDelete={() => handleDeleteEmployee(employee.id)}
-                            />
-                        ))}
-                    </div>
-                )}
-            </div>
+            <Typography component="div" variant="h4" py={2}>
+                <Box sx={{ textAlign: 'left', m: 1 }}>Employee Management App</Box>
+            </Typography>
+            <Box sx={{
+                display: 'flex',
+                flexDirection: 'row-reverse',
+            }}>
+                <Button variant="contained" color="primary" sx={{ backgroundColor: "#89CC48", marginBottom: 2 }} onClick={() => console.log('View Details')}>
+                    <AddIcon sx={{ paddingRight: 2 }} /> New employee
+                </Button>
+            </Box>
+            {loading ? (
+                <p>Loading...</p>
+            ) : error ? (
+                <p>{error}</p>
+            ) : (
+                <div className="cardContainer">
+                    {employees.map((employee) => (
+                        <EmployeeCard
+                            key={employee.id}
+                            employee={employee}
+                            onDelete={() => handleDeleteEmployee(employee.id)}
+                        />
+                    ))}
+                </div>
+            )}
         </Container>
     );
 };
