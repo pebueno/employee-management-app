@@ -9,25 +9,25 @@ import {
 @Entity()
 export default class Employee {
 
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
-    @Column()
+    @Column({ type: 'text' })
     firstName: string;
 
-    @Column()
+    @Column({ type: 'text' })
     lastName: string;
 
-    @Column()
+    @Column({ type: 'text' })
     department: string;
     
-    @Column()
+    @Column({ type: 'date' })
     hireDate: Date;
     
-    @Column()
-    phone: number;
+    @Column({ type: 'varchar', length: 20 })
+    phone: string;
     
-    @Column()
+    @Column({ type: 'text' })
     address: string;
 
     @CreateDateColumn()
