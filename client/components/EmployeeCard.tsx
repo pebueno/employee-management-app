@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import ClearIcon from '@mui/icons-material/Clear';
 import { Grid } from '@mui/material';
 import Card from '@mui/joy/Card';
+import Link from 'next/link';
 
 interface Props {
   employee: EmployeeType;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const EmployeeCard: FC<Props> = ({ employee, onDelete }) => {
+
   const formatDate = (dateString: string) => {
     const hireDate = new Date(dateString);
     const options: Intl.DateTimeFormatOptions = { month: 'long', day: 'numeric', year: 'numeric' };
@@ -60,8 +62,10 @@ const EmployeeCard: FC<Props> = ({ employee, onDelete }) => {
           </CardContent>
         </Grid>
         <Grid item xs={3} sx={{ display: 'flex', justifyContent: 'space-evenly', alignItems: 'center' }}>
-          <Button variant="contained" color="primary" sx={{ backgroundColor: "#89CC48" }} onClick={() => console.log('View Details')}>
-            View Details
+          <Button variant="contained" color="primary" sx={{ backgroundColor: "#89CC48" }}>
+            <Link href={`/detail/${employee.id}`} passHref>
+              View Details
+            </Link>
           </Button>
           <ClearIcon color="error" sx={{ cursor: 'pointer' }} onClick={onDelete} />
         </Grid>

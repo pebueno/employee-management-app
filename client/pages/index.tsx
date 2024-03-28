@@ -5,6 +5,7 @@ import { EmployeeType } from '../components/common/types';
 import { Box, Button, Container, Typography } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import AddEmployeeModal from '../components/AddEmployeeModal';
+ 
 
 const API_BASE_URL = 'http://localhost:3001/api';
 
