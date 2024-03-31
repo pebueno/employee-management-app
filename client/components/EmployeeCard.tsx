@@ -52,7 +52,7 @@ const EmployeeCard: FC<Props> = ({ employee, onDelete }) => {
               {`${employee.firstName} ${employee.lastName}`}
             </Typography>
             <Typography variant="subtitle1" color="text.secondary" component="div" display="inline" pl={3}>
-              {employee.department}
+              {employee.department.name}
             </Typography>
           </CardContent>
           <CardContent sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

@@ -1,15 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import axios, { AxiosInstance } from 'axios';
-
-interface EmployeeType {
-  id: string;
-  firstName: string;
-  lastName: string;
-  department: string;
-  hireDate: string;
-  address: string;
-  phone: string;
-}
+import { EmployeeType } from '../components/common/types';
 
 interface ApiContextType {
   employees: EmployeeType[];

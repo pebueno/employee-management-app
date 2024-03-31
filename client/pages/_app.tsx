@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app'
 import Head from 'next/head';
 import { EmployeeProvider } from '../contexts/useEmployees';
+import { DepartmentProvider } from '../contexts/useDepartments';
 import '../styles/globals.css';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -10,7 +11,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <title>Employee Management App</title>
     </Head>
     <EmployeeProvider>
-      <Component {...pageProps} />
+      <DepartmentProvider>
+        <Component {...pageProps} />
+      </DepartmentProvider>
     </EmployeeProvider>
     </>
   );
