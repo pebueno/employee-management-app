@@ -3,6 +3,7 @@ import cors from 'cors';
 import * as dotenv from "dotenv";
 import { AppDataSource } from "./data-source";
 import employeesRouter from "./routes/employees";
+import departmentsRouter from './routes/departments';
 
 dotenv.config();
 const app = express();
@@ -16,6 +17,7 @@ app.use(cors({
 app.use(express.json());
 
 app.use('/api/employees', employeesRouter);
+app.use('/api/departments', departmentsRouter);
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
