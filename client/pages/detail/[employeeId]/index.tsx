@@ -1,35 +1,14 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { EmployeeType } from '../../../components/common/types';
-import EmployeeDetails from '../../../components/EmployeeDetails';
 import { useRouter } from 'next/router';
-
+import EmployeeDetails from '../../../components/EmployeeDetails';
+import { useEmployees } from '../../../contexts/useEmployees';
 
 const DetailsPage = () => {
   const router = useRouter();
   const { employeeId } = router.query;
 
-  const [employee, setEmployee] = useState<EmployeeType | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+  const { employees, loading, error } = useEmployees();
 
-  
-  useEffect(() => {
-    const fetchEmployee = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3001/api/employees/${employeeId}`);
-        setEmployee(response.data.employee);
-        setLoading(false);
-      } catch (error) {
-        setError('Failed to fetch employee details. Please try again later.');
-        setLoading(false);
-      }
-    };
-
-    if (employeeId) {
-      fetchEmployee();
-    }
-  }, [employeeId]);
+  const employee = employees.find(emp => emp.id === employeeId);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -43,9 +22,7 @@ const DetailsPage = () => {
     return <p>No employee found.</p>;
   }
 
-  return (
-    <EmployeeDetails employee={employee} />
-  );
+  return <EmployeeDetails employee={employee} />;
 };
 
 export default DetailsPage;
