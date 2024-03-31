@@ -3,8 +3,11 @@ import {
     PrimaryGeneratedColumn, 
     Column,
     CreateDateColumn,
-    UpdateDateColumn, 
+    UpdateDateColumn,
+    ManyToOne,
+    JoinColumn 
 } from "typeorm"
+import Department from "./Department";
 
 @Entity()
 export default class Employee {
@@ -18,8 +21,9 @@ export default class Employee {
     @Column({ type: 'text' })
     lastName: string;
 
-    @Column({ type: 'text' })
-    department: string;
+    @ManyToOne(() => Department, (department) => department.employees)
+    @JoinColumn({ name: 'departmentId', referencedColumnName: 'id' })
+    department: Department;
     
     @Column({ type: 'date' })
     hireDate: Date;
