@@ -3,6 +3,7 @@ import { Button, FormControl, InputLabel, MenuItem, Select, Typography, Containe
 import { EmployeeType } from './common/types';
 import Link from 'next/link';
 import { useDepartments } from '../contexts/useDepartments';
+import { useEmployees } from '../contexts/useEmployees';
 
 interface EmployeeDetailsProps {
     employee: EmployeeType;
@@ -10,8 +11,10 @@ interface EmployeeDetailsProps {
 
 const EmployeeDetails = ({ employee }: EmployeeDetailsProps) => {
     const [isActive, setIsActive] = useState(true);
-    const { departments } = useDepartments();
     const [selectedDepartment, setSelectedDepartment] = useState<string>('');
+    
+    const { departments } = useDepartments();
+    const { updateEmployee } = useEmployees();
 
     useEffect(() => {
         if (employee && employee.department) {
@@ -23,8 +26,12 @@ const EmployeeDetails = ({ employee }: EmployeeDetailsProps) => {
         setSelectedDepartment(event.target.value as string);
     };
 
-    const handleUpdate = () => {
-        // Implement update logic here
+    const handleUpdate = async () => {
+        const updatedEmployee: EmployeeType = {
+            ...employee,
+            department: { id: parseInt(selectedDepartment), name: '' }, // Update department with the selected value
+        };
+        await updateEmployee(updatedEmployee); // Call the updateEmployee method
     };
 
     const handleToggleActive = () => {

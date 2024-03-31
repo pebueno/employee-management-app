@@ -8,6 +8,7 @@ interface ApiContextType {
   error: string | null;
   deleteEmployee: (employeeId: string) => Promise<void>;
   saveEmployee: (newEmployee: EmployeeType) => Promise<void>;
+  updateEmployee: (updatedEmployee: EmployeeType) => Promise<void>;
 }
 
 const EmployeeContext = createContext<ApiContextType | undefined>(undefined);
@@ -56,8 +57,17 @@ export const EmployeeProvider = ({ children }: EmployeeProviderProps): JSX.Eleme
     }
   };
 
+  const updateEmployee = async (updatedEmployee: EmployeeType): Promise<void> => {
+    try {
+      await api.put(`/employees/${updatedEmployee.id}`, updatedEmployee);
+      fetchEmployees();
+    } catch (error) {
+      console.error('Error updating employee:', error);
+    }
+  };  
+
   return (
-    <EmployeeContext.Provider value={{ employees, loading, error, deleteEmployee, saveEmployee }}>
+    <EmployeeContext.Provider value={{ employees, loading, error, deleteEmployee, saveEmployee, updateEmployee }}>
       {children}
     </EmployeeContext.Provider>
   );
