@@ -144,6 +144,23 @@ npm run client
 
 Visit http://localhost:3000 in your web browser to access the app.
 
+## Architecture
+### Front end
+
+In the frontend architecture, methods for interacting with the backend API and managing application state are centralized within React contexts which facilitate unit testing. The Context API is a lightweight solution for state management and eliminates prop drilling, also follows a component-based architecture without repetition of code and a clean architecture using functional programming.
+
+Additionally, the application implements Server-Side Rendering (SSR), allowing the server to render the initial HTML content for the client's request. This approach improves performance by sending pre-rendered HTML to the client, enhancing search engine optimization (SEO) and providing faster page loading times.
+
+### Back end
+
+The backend server follows a Model-View-Controller (MVC) architecture, which helps in organizing the codebase and separating concerns. Here's a brief overview of each component:
+
+- Routes: Handle incoming HTTP requests and direct them to the appropriate controller methods based on the request URL and HTTP method.
+
+- Controllers: Process the data received from the client and interact with the database using the corresponding models. They contain the business logic for handling various operations such as creating, reading, updating, and deleting records.
+
+- Models: Define the database schema using TypeScript classes and interact with the database using TypeORM. Each model corresponds to a database table and provides methods for performing CRUD operations.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
